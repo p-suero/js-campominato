@@ -16,31 +16,29 @@ function genera_random (min, max) {
 //creo un array vuoto che contenga i numeri random
 var mine = []
 
-//costruisco un ciclo per generare 16 numeri random
+// costruisco un ciclo per generare 16 numeri random
 while (mine.length < 16) {
     var numero_generato = genera_random (1, 100);
-    mine.push(numero_generato)
+    mine.push(numero_generato);
 }
 
 console.log(mine);
 
-// //chiedo all'utente di inserire un numero tra 1 e 100
-// do {
-//     var numero_utente = parseInt(prompt("Inserisci un numero da 1 a 100"))
-//     if (isNaN(numero_utente)) {
-//         alert("Non hai inserito un numero ")
-//     } else if (numero_utente < 1) {
-//         alert("Hai inserito un numero minore di 1")
-//     } else if (numero_utente > 100) {
-//         alert("Hai inserito un numero maggiore di 100")
-//     }
-// } while (isNaN(numero_utente) || numero_utente < 1 || numero_utente > 100);
-//
-// console.log(numero_utente);
-//
-// var risultato = mine.includes(numero_utente)
-// console.log(risultato);
-//
-// do {
+var punteggio = -1;
 
-} while (true);
+do {
+    var numero_utente = parseInt(prompt("Inserisci un numero tra 1 e 100"));
+    punteggio = punteggio + 1;
+} while ((isNaN(numero_utente) == false && numero_utente >= 1 && numero_utente <= 100) && (mine.includes(numero_utente)== false  && punteggio <= 84 ));
+
+if (isNaN(numero_utente)) {
+    alert("Hai inserito un valore diverso dal numero")
+} else if (numero_utente <1 || numero_utente >100) {
+    alert("hai inserito un valore non compreso tra 1 e 100")
+} else if (mine.includes(numero_utente)) {
+    console.log("Hai perso. E' stata colpita una bomba");
+    console.log(punteggio);
+} else {
+    console.log("Hai raggiunto il punteggio massimo");
+    console.log("Il tuo pungeggio finale è di" + punteggio);
+}
