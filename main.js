@@ -68,7 +68,6 @@ function genera_mine (n, min, max) {
     while (mine.length < n) {
         var numero_random = Math.floor(Math.random() * (max - min + 1) ) + min;
         if (mine.includes(numero_random) == false) {
-
             mine.push(numero_random);
         }
     }
