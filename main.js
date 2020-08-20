@@ -28,38 +28,43 @@ var mine_generate = genera_mine(16, 1 ,val_max)
 console.log("Le mine sono: " + mine_generate);
 
 
-// In seguito deve chiedere all'utente di inserire un numero alla volta, sempre compreso tra 1 ed il valore della variabile max, che sarà la sua giocata
+// In seguito devo chiedere all'utente di inserire un numero alla volta, sempre compreso tra 1 ed il valore della variabile max, che sarà la sua giocata
 //creo un contenitore per inserire i numeri dell'utente
 var lista_numeri_utente = [];
 
 do {
-    //quindi chiedo all'utente un numero da 1 al valore della variabile max all'utente
+    //quindi chiedo all'utente un numero da 1 al valore della variabile "max" all'utente
     var numero_utente = parseInt(prompt("Inserisci un numero tra 1 e " + val_max));
     //poi verifico se il numero è valido ai fini del punteggio
-    if (is_valid(numero_utente, val_max) == true) {
+    if (is_valid(numero_utente, val_max)) {
         if (lista_numeri_utente.includes(numero_utente)) {
             alert("Hai scelto un valore già inserito");
-          //se l'utente mi inserisce un numero valido lo registro nell' array
-        } else if (lista_numeri_utente.includes(numero_utente) == false) {
+        //se l'utente colpisce una mina esce dal gioco
+      } else if (mine_generate.includes(numero_utente)) {
+          //creo una variabile per il punteggio (attraverso la lunghezza dell'array)
+          var punteggio = lista_numeri_utente.length;
+          console.log("Hai perso! -" + numero_utente + "- colpisce una mina");
+          console.log("Il tuo punteggio finale è di: " + punteggio);
+      } //l'utente mi inserisce un numero valido lo registro nell' array
+        else {
             lista_numeri_utente.push(numero_utente);
         }
-      //stampo un messaggio in caso di numero non valido
+      //stampo un messaggio in caso venga inserito un numero non valido
     } else {
         alert("Hai inserito un valore non valido")
     }
 } while (mine_generate.includes(numero_utente) == false  && lista_numeri_utente.length < (val_max - 16) );
 
-// Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l'utente ha inserito un numero consentito; in altre parole, deve comunicare all'utente quante giocate ha fatto prima di perdere
-//Effettuo il calcolo -1 per stamprare il punteggio prima di colpire una mina
-var punteggio = lista_numeri_utente.length - 1;
 
+//se si esce dal ciclo e non sono state colpite mine, stampo un messaggio di vittoria
 if (lista_numeri_utente.length == (val_max - 16)) {
     console.log("Complimenti. Hai raggiunto il punteggio massimo");
-} else {
-    console.log("Hai perso! -" + numero_utente + "- colpisce una mina");
-    console.log("Il tuo punteggio finale è di: " + punteggio);
 }
 
+
+
+//************FUNZIONI***********//
+//******************************//
 
 //creo una funzione che generi un array con n numeri random diversi tra di loro
 function genera_mine (n, min, max) {
