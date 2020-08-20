@@ -2,7 +2,7 @@
 
 //Chiedo all'utente di scegliere un livello di difficoltà
 do {
-    var difficolta = prompt("Scegli un livello di difficolta tra 0 - 1 - 2")
+    var difficolta = prompt("Scegli un livello di difficolta tra 0 - 1 - 2");
     if (!(difficolta_valida(difficolta))) {
         alert("Hai inserito un valore non valido");
     }
@@ -13,16 +13,16 @@ console.log("Il livello di difficoltà scelto è: " + difficolta);
 
 //effettuo i settaggi secondo il livello scelto
 if (difficolta == 0) {
-    var val_max = 100
+    var val_max = 100;
 } else if (difficolta == 1) {
-    val_max = 80
+    val_max = 80;
 } else {
-    val_max = 50
+    val_max = 50;
 }
 
 //Il computer deve generare 16 numeri casuali che saranno le "mine"
 //ottengo le mine random grazie alla funzione
-var mine_generate = genera_mine(16, 1 ,val_max)
+var mine_generate = genera_mine(16, 1 ,val_max);
 
 //stampo la posizione delle mine
 console.log("Le mine sono: " + mine_generate);
@@ -51,7 +51,7 @@ do {
         }
       //stampo un messaggio in caso venga inserito un numero non valido
     } else {
-        alert("Hai inserito un valore non valido")
+        alert("Hai inserito un valore non valido");
     }
 } while (mine_generate.includes(numero_utente) == false  && lista_numeri_utente.length < (val_max - 16) );
 
@@ -76,7 +76,7 @@ function genera_mine (n, min, max) {
             mine.push(numero_random);
         }
     }
-    return(mine)
+    return mine;
 }
 
 
@@ -85,7 +85,7 @@ function difficolta_valida (difficolta) {
     if (!(isNaN(difficolta)) && difficolta >= 0 && difficolta <= 2) {
         return true;
     } else {
-        return false
+        return false;
     }
 }
 
@@ -93,8 +93,8 @@ function difficolta_valida (difficolta) {
 //creo una funzione per il controllo dei numeri inseriti dall'utente
 function is_valid (numero, val_max) {
     if (isNaN(numero) == false && numero >= 1 && numero <= val_max) {
-        return(true)
+        return true;
     } else {
-        return(false)
+        return false;
     }
 }
